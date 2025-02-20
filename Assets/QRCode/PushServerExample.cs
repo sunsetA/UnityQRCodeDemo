@@ -1,4 +1,3 @@
-using OpenCover.Framework.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +8,8 @@ using Newtonsoft.Json;
 using System.Xml;
 using System.IO;
 using UnityEngine.UI;
+using System.Text;
+using Unity.Collections;
 
 namespace OA 
 {
@@ -16,10 +17,22 @@ namespace OA
     {
         public RawImage QRImage;
 
-
         [Header("注意，正常屏幕下texture的贴图尺寸如果过大，需要调小至64/128")]
         public Texture2D QRTexture;
         public int resultCode;
+
+        [Header("联网情况下的请求地址")]
+        public string serverUrl = "https://apifoxmock.com/m1/5105109-0-default/api/license";
+
+        [Header("联网情况下获取激活状态的请求地址")]
+        public string getActiveStateUrl = "https://apifoxmock.com/m1/5105109-0-default/api/license?Id=";
+
+        [Header("断网情况下的小程序扫码地址")]
+        public string NoNetworkUrl = "https://apifoxmock.com/m1/5105109-0-default/api/license";
+
+
+        public string plainText = "";
+        public string key = "12345678";
 
         /// <summary>
         /// 请求licid的协程
@@ -31,27 +44,55 @@ namespace OA
         /// </summary>
         private IEnumerator GetLicIdStateIenurator;
 
-
-
-        public string serverUrl = "https://apifoxmock.com/m1/5105109-0-default/api/license";
-
-        public string getActiveStateUrl = "https://apifoxmock.com/m1/5105109-0-default/api/license?Id=";
+        private void Awake()
+        {
+            plainText = DESEncryption.GenerateRandomChars();
+            Debug.Log("plainText:"+plainText);
+        }
         private void Start()
         {
             RefreshQR();
+
+
+            #region 加密解密测试
+            //string encryptedText = DESEncryption.Encrypt(plainText, key);
+
+            //string decryptedText=DESEncryption.Decrypt(encryptedText, key);
+
+            //if (encryptedText != null)
+            //{
+            //    Debug.LogFormat("Encrypted Text: {0}  and  Decrypted Text:{1}",encryptedText,decryptedText);
+            //}
+
+            #endregion
         }
+
+        /// <summary>
+        /// 根据网络连接情况，刷新在线二维码
+        /// </summary>
         public void RefreshQR()
         {
+            bool isOnline = IsConnectedToInternet();
 
-            OAAppsettings oAAppsettings = new OAAppsettings(Path.Combine(Environment.CurrentDirectory, "OAApp.exe.config"));
-            var json = JsonConvert.SerializeObject(oAAppsettings);
+            if (isOnline)
+            {
+                //如果在线，根据licid请求二维码
+                OAAppsettings oAAppsettings = new OAAppsettings(Path.Combine(Environment.CurrentDirectory, "OAApp.exe.config"));
+                var json = JsonConvert.SerializeObject(oAAppsettings);
+                RequestLicIdIenumerator = PostGameDataMsg(serverUrl, json, PushDataCallback);
+                GetLicIdStateIenurator = GetActiveStateFromServer(getActiveStateUrl, resultCode, GetActiveStateCallback);
+                StartCoroutine(RequestLicIdIenumerator);
+            }
+            else 
+            {
+                var pushData = GetOffLinePostData();
+                //如果离线，根据小程序的扫码地址生成二维码
+                ZXingQRCodeWrapper_GenerateQRCode.SetRawImageQRCode(QRImage, QRTexture, pushData, Color.blue);
+                var qrCode = JsonConvert.DeserializeObject<NoErrorRequestData>(pushData);
+                var verifyCode = DESEncryption.Decrypt(qrCode.verifyCode, key);
+                Debug.Log("当前是断网状态,解密后的验证码为："+ verifyCode);
+            }
 
-
-            RequestLicIdIenumerator=PostGameDataMsg(serverUrl, json, PushDataCallback);
-            GetLicIdStateIenurator= GetActiveStateFromServer(getActiveStateUrl, resultCode, GetActiveStateCallback);
-
-
-            StartCoroutine(RequestLicIdIenumerator);
         }
 
         /// <summary>
@@ -160,7 +201,41 @@ namespace OA
                 Debug.Log("激活失败");
             }
         }
+
+        /// <summary>
+        /// 判断当前是否连接到互联网
+        /// </summary>
+        /// <returns>如果是联网，则返回true，否则为false</returns>
+        private bool IsConnectedToInternet()
+        {
+            return Application.internetReachability != NetworkReachability.NotReachable;
+        }
+
+
+        /// <summary>
+        /// 获取离线的url
+        /// </summary>
+        /// <returns></returns>
+        private string GetOffLinePostData() 
+        {
+            string path = Path.Combine(Environment.CurrentDirectory,"NoInternet.json");
+            if (File.Exists(path))
+            {
+                string jsonContent=File.ReadAllText(path);
+                NoErrorRequestData noErrorRequestData = JsonUtility.FromJson<NoErrorRequestData>(jsonContent);
+                noErrorRequestData.verifyCode = DESEncryption.Encrypt(plainText, key);
+                return JsonConvert.SerializeObject(noErrorRequestData);
+            }
+
+            else
+            {
+                Debug.LogError("当前目录下不存在该文件");
+                return null;
+            }
+        }
     }
+
+    #region 有网络状态下的请求
 
     #region   请求QR码的数据类
     public class OAAppsettings 
@@ -352,4 +427,27 @@ namespace OA
 
     }
     #endregion
+
+    #endregion
+
+
+    #region 无网络状态下请求的数据类
+
+    public class NoErrorRequestData
+    {
+        public string appDesc;
+        public string appIdent;
+        public string appName;
+        public string appPath;
+        public string assemblyName;
+        public string projectName;
+        public string tenantName;
+        public string verifyCode;    
+    }
+
+
+
+
+    #endregion
+
 }

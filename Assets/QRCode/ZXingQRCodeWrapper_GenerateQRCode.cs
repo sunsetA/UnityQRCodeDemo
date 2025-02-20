@@ -96,7 +96,7 @@ public  static class ZXingQRCodeWrapper_GenerateQRCode
         // 转成texture2d
         int w = bitMatrix.Width;
         int h = bitMatrix.Height;
-        Debug.Log(string.Format("w={0},h={1}", w, h));
+        //Debug.Log(string.Format("w={0},h={1}", w, h));
         Texture2D texture = new Texture2D(w, h);
         for (int x = 0; x < h; x++)
         {

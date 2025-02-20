@@ -60,6 +60,7 @@
     <Compile Include="Assets\QRCode\PushServerExample.cs" />
     <Compile Include="Assets\QRCode\SkipVerify\WebReqSkipCert.cs" />
     <Compile Include="Assets\QRCode\ZXingQRCodeWrapper_GenerateQRCode.cs" />
+    <Compile Include="Assets\QRCode\DESEncryption.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
