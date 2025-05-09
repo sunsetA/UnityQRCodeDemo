@@ -62,6 +62,7 @@ namespace OA
             //if (encryptedText != null)
             //{
             //    Debug.LogFormat("Encrypted Text: {0}  and  Decrypted Text:{1}",encryptedText,decryptedText);
+
             //}
 
             #endregion
@@ -226,7 +227,6 @@ namespace OA
                 noErrorRequestData.verifyCode = DESEncryption.Encrypt(plainText, key);
                 return JsonConvert.SerializeObject(noErrorRequestData);
             }
-
             else
             {
                 Debug.LogError("当前目录下不存在该文件");

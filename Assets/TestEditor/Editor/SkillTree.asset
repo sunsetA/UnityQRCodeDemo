@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-1191265082952930273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
+  m_Name: SubItem
+  m_EditorClassIdentifier: 
+  skillName: 
+  cost: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f93b78171403e54292a7306450db7cf, type: 3}
+  m_Name: SkillTree
+  m_EditorClassIdentifier: 
+  skills:
+  - {fileID: 4419291860698817661}
+  - {fileID: 353063790998213158}
+--- !u!114 &353063790998213158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
+  m_Name: SubItem
+  m_EditorClassIdentifier: 
+  skillName: 
+  cost: 0
+--- !u!114 &4419291860698817661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
+  m_Name: SubItem
+  m_EditorClassIdentifier: 
+  skillName: 
+  cost: 0
