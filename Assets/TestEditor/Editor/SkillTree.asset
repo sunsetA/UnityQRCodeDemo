@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
   m_Name: SubItem
   m_EditorClassIdentifier: 
-  skillName: 
+  type: 0
   cost: 0
+  duration: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,6 +30,7 @@ MonoBehaviour:
   skills:
   - {fileID: 4419291860698817661}
   - {fileID: 353063790998213158}
+  - {fileID: -1191265082952930273}
 --- !u!114 &353063790998213158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
   m_Name: SubItem
   m_EditorClassIdentifier: 
-  skillName: 
+  type: 1
   cost: 0
+  duration: 0
 --- !u!114 &4419291860698817661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,5 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66db9aac01ce5674a8ae80f41b7357e4, type: 3}
   m_Name: SubItem
   m_EditorClassIdentifier: 
-  skillName: 
+  type: 2
   cost: 0
+  duration: 0

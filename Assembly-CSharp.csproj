@@ -59,13 +59,15 @@
     <Compile Include="Assets\QRCode\AppSettings.cs" />
     <Compile Include="Assets\SqliteFolder\SqliteMGR.cs" />
     <Compile Include="Assets\QRCode\PushServerExample.cs" />
+    <Compile Include="Assets\TestEditor\Skill.cs" />
+    <Compile Include="Assets\TestEditor\SkillTree.cs" />
     <Compile Include="Assets\Samples\Addressables\1.19.19\Addressables Utility\AddressablesUtility.cs" />
     <Compile Include="Assets\QRCode\SkipVerify\WebReqSkipCert.cs" />
     <Compile Include="Assets\QRCode\ZXingQRCodeWrapper_GenerateQRCode.cs" />
     <Compile Include="Assets\PortControl.cs" />
     <Compile Include="Assets\QRCode\DESEncryption.cs" />
-    <Compile Include="Assets\TestEditor\Skill.cs" />
-    <Compile Include="Assets\TestEditor\SkillTree.cs" />
+    <Compile Include="Assets\AIAudioSource\ByteDanceVoice\XunfeiVoice.cs" />
+    <Compile Include="Assets\AIAudioSource\ByteDanceVoice\TtsRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
