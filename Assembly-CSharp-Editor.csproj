@@ -56,6 +56,15 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\EditorMenu.cs" />
+    <Compile Include="Assets\Modern UI Pack\Editor\Scripts\ContextMenu.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\WalkPathEditor.cs" />
+    <Compile Include="Assets\Modern UI Pack\Editor\Scripts\InitMUIP.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\MovePathEditor.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\PopulationSystemManagerEditor.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\NewPathEditor.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\StandingPeopleStreetEditor.cs" />
+    <Compile Include="Assets\PopulationSystem\Editor\PopulationSystemEditor\StandingPeopleConcertEditor.cs" />
     <Compile Include="Assets\TestEditor\Editor\SkillTreeExtender.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -352,6 +361,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Population">
+      <HintPath>Assets\PopulationSystem\Code\Population.dll</HintPath>
     </Reference>
     <Reference Include="System.EnterpriseServices">
       <HintPath>Assets\Plugins\System.EnterpriseServices.dll</HintPath>
@@ -829,6 +841,10 @@
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{0AD8C7DB-A6CB-FB42-5C4C-9FBCE643BC54}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Sprite.Editor.csproj">
+      <Project>{D90AC149-9961-A62B-B661-DBB4B4416E99}</Project>
+      <Name>Unity.2D.Sprite.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.csproj">
       <Project>{8BF9EEF6-469C-2F50-9BA1-EFD63830E6C4}</Project>
